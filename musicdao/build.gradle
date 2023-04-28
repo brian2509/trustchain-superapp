@@ -5,6 +5,8 @@ apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-kapt'
 apply plugin: "dagger.hilt.android.plugin"
+apply plugin: "org.jetbrains.kotlin.plugin.serialization"
+
 
 buildscript {
     repositories {
@@ -83,7 +85,6 @@ dependencies {
 
     api(project(':ipv8-android')) {
         exclude group: 'net.java.dev.jna'
-        exclude group: 'org.bouncycastle'
     }
 
     // TODO fix direct import, this should rely on common.
@@ -125,6 +126,9 @@ dependencies {
 
     // Crypto library for testing
     testImplementation "com.goterl:lazysodium-java:5.1.4"
+
+    implementation group: 'org.bouncycastle', name: 'bcprov-jdk15to18', version: '1.63'
+    testImplementation group: 'org.bouncycastle', name: 'bcprov-jdk15to18', version: '1.63'
 
     // Testing
     testImplementation 'junit:junit:4.12'
